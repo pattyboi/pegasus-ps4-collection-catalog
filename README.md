@@ -1,13 +1,49 @@
-# 🎮 Pegasus DL — PS4 FPKG Collection Catalog
+# 🎮 PS4 FPKG Collection Catalog — SSPI and Pegasus DL
 
+[![SSPI Compatible](https://img.shields.io/badge/SSPI-Compatible-orange.svg)](https://github.com/Xyhlo/SSPI)
 [![Pegasus DL Compatible](https://img.shields.io/badge/Pegasus%20DL-Compatible-blue.svg)](https://github.com/pegasus-ps5/pegasus-dl)
 [![Source: Internet Archive](https://img.shields.io/badge/Source-Internet%20Archive-lightgrey.svg)](https://archive.org/details/ps4-fpkg-collection-english-fpkgi)
-[![Total Titles](https://img.shields.io/badge/Titles-860%2B%20Games-success.svg)](#)
+[![Total Titles](https://img.shields.io/badge/Titles-866%20Games-success.svg)](#)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A complete, curated, and standardized **Pegasus DL** package catalog containing over **860+ PS4 titles**. 
+A curated catalog of **866 English PS4 titles** (base game with patches and DLC merged), hosted on Internet Archive, in two formats:
 
-Originally indexed for legacy FPKGi, this collection has been converted, and restructured to integrate into **[Pegasus DL](https://github.com/pegasus-ps5/pegasus-dl)** for jailbroken PlayStation 5.
+| Format | File | Console app |
+| --- | --- | --- |
+| SSPI source | [`ps4-fpkg-collection-english.gssource`](ps4-fpkg-collection-english.gssource) | [SSPI](https://github.com/Xyhlo/SSPI) on a PS4 |
+| Pegasus DL catalog | [`pegasus-ps4-catalog.json`](pegasus-ps4-catalog.json) | [Pegasus DL](https://github.com/pegasus-ps5/pegasus-dl) on a PS5 |
+
+Originally indexed for legacy FPKGi, the collection was converted to the Pegasus DL format, and the Pegasus file is converted again into the SSPI source by [`pegasus_to_sspi.py`](pegasus_to_sspi.py).
+
+---
+
+## 🚀 How to Add to SSPI
+
+SSPI is a PS4 package manager; it does not ship a catalog and installs sources you give it. Choose one:
+
+- **From a link:** open the SSPI phone page (Settings → Connections → scan the QR code), go to the **Sources** tab and paste:
+  ```text
+  https://raw.githubusercontent.com/pattyboi/pegasus-ps4-collection-catalog/main/ps4-fpkg-collection-english.gssource
+  ```
+- **From USB:** download the `.gssource` file, copy it to a connected drive, then choose Settings → Connections → Manage sources → **Install from USB**.
+
+Every package is a direct Internet Archive link, so no debrid account is needed. SSPI will list the source as unsigned.
+
+### Regenerating the SSPI source
+
+```sh
+python3 pegasus_to_sspi.py pegasus-ps4-catalog.json ps4-fpkg-collection-english.gssource
+```
+
+Output is byte-for-byte reproducible. Region codes are mapped to SSPI's (`USA`→`US`, `EUR`→`EU`, `JAP`→`JP`, `ASI`→`AS`). The rounded `Size:` text is not carried over, because SSPI treats a size as an exact byte count. The script exits with an error if the output would exceed SSPI's file-size, file-count or compression-ratio limits.
+
+Format verified by running SSPI's own source validator (`Package.cs`, `PackageSourceEngineStatic*.cs`, build 5.11 source) over this file; not yet tested on a console.
+
+---
+
+# Pegasus DL
+
+Converted into the modern **Pegasus DL** catalog format for jailbroken PlayStation 5.
 
 ---
 
